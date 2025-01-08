@@ -1,0 +1,34 @@
+# this file is meant to be called for the robot environment leveraging the polishing_3D task config
+name: "real_robot_reward"
+
+# specifics for reward function
+
+# ADDITIONAL TARGETS ----------------------------------------------------------
+target_cross_error: 0.0
+target_vel_error: 0.0 
+target_dir_error: 0.0
+# ---------------------------------------------------------- ADDITIONAL TARGETS 
+
+# REWARD/PENALTY COMPUTATIONS -------------------------------------------------
+# -----------------Force--------------------
+reward_calc_lower_limit_force_inner: -0.5
+reward_calc_upper_limit_force_inner: 0.5
+reward_calc_lower_limit_force_outer: -2.0
+reward_calc_upper_limit_force_outer: 2.0
+# -----------------Cross error----------------
+reward_calc_lower_limit_cross: -0.01
+reward_calc_upper_limit_cross: 0.01
+# -----------------Direction error----------------
+reward_calc_lower_limit_dir: -0.6
+reward_calc_upper_limit_dir: 0.6
+# -----------------Velocity error-----------------
+reward_calc_lower_limit_vel_error: -0.01
+reward_calc_upper_limit_vel_error: 0.01
+# ------------------------------------------------- REWARD/PENALTY COMPUTATIONS 
+
+# WEIGHTINGS ------------------------------------------------------------------
+reward_calc_c_force: 0.4
+reward_calc_c_cross: 0.15
+reward_calc_c_dir: 0.15
+reward_calc_c_vel_error: 0.3
+# ------------------------------------------------------------------ WEIGHTINGS

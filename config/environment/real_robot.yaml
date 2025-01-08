@@ -1,0 +1,49 @@
+name: "real_robot"                                      # Name of the environment  
+control_freq: ${control_freq}                           # Control frequency [Hz]  
+horizon:  100                                           # Maximum number of steps per episode   
+mixed_action_env: True                                  # Flag for contextualized agent (True will store lambda in RB)
+robot_server_url: "http://192.168.0.3:5000/"            # URL the Robot control Flask server is running on                     
+
+controller_params:                                      # Config of the C++ robot impedance controller                       
+  max_translational_stiffness: 3000                     # Maximum translational stiffness [N/m]   
+  max_rotational_stiffness: 500                         # Maximum rotational stiffness [Nm/rad]            
+  max_translational_damping_factor: 10                
+  max_rotational_damping_factor: 10
+  filter_param: 1
+  nullspace_stiffness: 0.2                              # Nullspace stiffness [Nm/rad]
+  joint1_nullspace_stiffness: 10                        # Nullspace stiffness for joint 1 [Nm/rad]                  
+  translational_clip_neg_x: 0.01                        # Translational clipping for negative x direction [m]
+  translational_clip_neg_y: 0.01                        # Translational clipping for negative y direction [m]           
+  translational_clip_neg_z: 0.01                        # Translational clipping for negative z direction [m]       
+  translational_clip_x: 0.01                            # Translational clipping for positive x direction [m]
+  translational_clip_y: 0.01                            # Translational clipping for positive y direction [m]   
+  translational_clip_z: 0.01                            # Translational clipping for positive z direction [m]
+  rotational_clip_neg_x: 0.05                           # Rotational clipping for negative x direction [rad]
+  rotational_clip_neg_y: 0.05                           # Rotational clipping for negative y direction [rad]
+  rotational_clip_neg_z: 0.05                           # Rotational clipping for negative z direction [rad]           
+  rotational_clip_x: 0.05                               # Rotational clipping for positive x direction [rad]           
+  rotational_clip_y: 0.05                               # Rotational clipping for positive y direction [rad]
+  rotational_clip_z: 0.05                               # Rotational clipping for positive z direction [rad]
+  translational_Ki: 0
+  rotational_Ki: 0
+  use_jacobian_derivative: True
+  verbose: False
+
+reset_poses:                                              # Reset poses for the robot in joint angles [rad]
+  intermediate_pose:
+    panda_joint1: 0.47064467431369583
+    panda_joint2: 0.006645994648736107
+    panda_joint3: -0.07715458750446728
+    panda_joint4: -2.3215205679441753
+    panda_joint5: 0.011523249762753646
+    panda_joint6: 2.3473112677468193
+    panda_joint7: 0.8068802171118092
+  final_pose:
+    panda_joint1: 0.47207790892212503
+    panda_joint2: 0.10051534347098992
+    panda_joint3: -0.07730908271186082
+    panda_joint4: -2.3532547015519945
+    panda_joint5: 0.02386667437189155
+    panda_joint6: 2.4727451916407874
+    panda_joint7: 0.7985756545019029
+

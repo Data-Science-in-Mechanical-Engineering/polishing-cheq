@@ -1,0 +1,2 @@
+_target_: agents.hybrid.hybrid_agent.HybridAgent
+eta: 1.0                                                 # Must take values in [0,1] where 0 is pure nominal controller and 1 is pure RL agent

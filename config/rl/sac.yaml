@@ -1,0 +1,14 @@
+_target_: agents.rl.sac.SAC
+device: ${device}
+gamma: 0.99
+polyak_factor: 0.005                                          # elsewhere referred to as tau
+policy_lr: 1e-4
+q_lr: 1e-4
+policy_frequency: 2
+target_network_frequency: 1
+alpha: 0.2
+autotune: true
+critic_hidden_dims: [256, 256]
+actor_hidden_dims: [256, 256]
+action_noise: "pink"
+layer_norm: false

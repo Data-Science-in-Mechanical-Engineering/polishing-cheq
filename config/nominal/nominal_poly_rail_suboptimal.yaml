@@ -1,0 +1,48 @@
+_target_: agents.nominal.nominal_poly_rail.NominalPolyRail
+# ----- via point definition ----- #
+via_points:                                                # in euler angles [deg]
+  point_0:
+    pos: [0.5, 0.17, 1.0327]
+    vel: [0, -0.044, 0.041]                                                            
+    ori: [132, 0, 0]    
+  point_1:
+    pos: [0.5, 0.12, 1.0655]
+    vel: [0, -0.054, 0.025]
+    ori: [155, 0, 0]                                                     
+  point_2:
+    pos: [0.5, 0.06, 1.08415]
+    vel: [0, -0.059, 0.010]
+    ori: [170, 0, 0]   
+  point_3:
+    pos: [0.5, 0, 1.08979]
+    vel: [0, -0.075, 0]
+    ori: [180, 0, 0]   
+  point_4:
+    pos: [0.5, -0.06, 1.0842]
+    vel: [0, -0.059, -0.010]
+    ori: [-170, 0, 0]                                   
+  point_5:
+    pos: [0.5, -0.12, 1.0655]
+    vel: [0, -0.054, -0.025]
+    ori: [-155, 0, 0]
+  point_6:
+    pos: [0.5, -0.17, 1.0327]
+    vel: [0, -0.044, -0.041]                                                    
+    ori: [-132, 0, 0]
+  # last one only for trajectory continuation
+  point_7:
+    pos: [0.5, -0.20, 0.97]
+    vel: [0, -0.00, -0.07]                                                    
+    ori: [-120, 0, 0]
+
+# ----- for trajectory creation (equal spacing) ----- #
+spacing: 5e-4
+resolution: 3e-5  
+
+# ----- some action definitions and hyperparameters ----- #
+nominal_gains: [500, 160, 50, 500, 500, 500, 1.0]         # first 6 for stiffness and last one for damping factor
+indent: -0.015
+action_radius: 0.020
+magnitude: 1.0
+num_skip_points: 10
+device: ${device}

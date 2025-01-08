@@ -1,0 +1,76 @@
+# OUTDATED... needs some changes to apply this in simulation env (mainly in __init__)
+type: "2D"
+
+# Action space parameters -----------------------------------------------------
+position_actions_min: [-0.01, -0.01, -0.01]         # [m]
+position_actions_max: [0.01, 0.01, 0.01]            # [m]
+kp_min: [600, 160, 120, 40, 40, 10]                 # [N/m, Nm/rad]
+kp_max: [2400, 640, 480, 120, 120, 30]              # [N/m, Nm/rad]
+damping_factors_min: [1, 1, 1, 1, 1, 1]
+damping_factors_max: [5, 5, 5, 5, 5, 5]
+orientation_actions_min: [-5, -5, -5]            # [deg, euler_angles (xyz)] (heuristically determined)
+orientation_actions_max: [5, 5, 5]               # [deg, euler_angles (xyz)] (heuristically determined)
+# ----------------------------------------------------- Action space parameters
+
+# Reward parameters -----------------------------------------------------------
+# -------------------Force-------------------
+target_force: 5
+reward_calc_lower_limit_force: 0
+reward_calc_upper_limit_force: 10
+reward_calc_min_force_for_contact: 1
+# -----------------X Velocity----------------
+target_xvel: 0 
+reward_calc_lower_limit_xvel: -0.04
+reward_calc_upper_limit_xvel: 0.04
+# -----------------X Deviation----------------
+target_xdist: 0 
+reward_calc_lower_limit_xdist: -0.008
+reward_calc_upper_limit_xdist: 0.008
+# -----------------Y Velocity-----------------
+target_yvel: -0.07
+reward_calc_lower_limit_yvel: -0.12
+reward_calc_upper_limit_yvel: -0.02
+# ----------------Done reward-----------------
+reward_done: 15
+# -----------------Penalties------------------
+arm_limit_collision_penalty: -10.0
+# ----------------Weightings------------------
+reward_calc_c_force: -0.4
+reward_calc_c_xvel: -0.1
+reward_calc_c_xdist: -0.1
+reward_calc_c_yvel: -0.5
+reward_calc_c_contact: 0.6
+reward_calc_c_done: 1
+# ----------------------------------------------------------- Reward parameters 
+
+# Sites parameters ------------------------------------------------------------
+control_mode: "pose"                                                # One of ["position", "pose"]
+fixed_orientation: [0.9834471, 0.1808745, 0.0091225, -0.0057475]    # Set fixed orientation quaternion if control_mode is "position"
+dist_th: 0.03                                                       # Distance threshold to switch to next site [m]
+sites:
+  site_1:
+    xpos: [0.4738529168632308, 0.19821244089249154, 0.99]
+  site_2:
+    xpos: [0.4738529168632308, 0.14821244089249153, 0.99]
+  site_3:
+    xpos: [0.4738529168632308, 0.09821244089249154, 0.99]
+  site_4:
+    xpos: [0.4738529168632308, 0.04821244089249152, 0.99]
+  site_5:
+    xpos: [0.4738529168632308, -0.0017875591075084685, 0.99]
+  site_6:
+    xpos: [0.4738529168632308, -0.05178755910750846, 0.99]
+  site_7:
+    xpos: [0.4738529168632308, -0.1017875591075085, 0.99]
+  site_8:
+    xpos: [0.4738529168632308, -0.1517875591075085, 0.99]
+  site_9:
+    xpos: [0.4738529168632308, -0.20178755910750848, 0.99]
+
+# ----------------------------------------------------------- Sites parameters
+
+# Safety parameters ----------------------------------------------------------
+pos_cap: 0.08                                            # Position cap [m]           
+vel_cap: 0.3                                             # Velocity cap [m/s]              
+force_cap: 60                                            # Force cap [N]
+# ----------------------------------------------------------- Safety parameters

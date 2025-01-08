@@ -1,0 +1,16 @@
+<mujoco model="bridge">
+  <asset>
+    <! Please note the scaling of the stl object!--\>
+    <mesh file="../meshes/bridge_revised_2.stl" name="bridge_mesh" scale="0.2 0.4 0.12"/>
+  </asset>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom name="bridge" pos="0.5 0 .97" mesh="bridge_mesh" type="mesh" density="50" group="0" solimp="0.9 0.99 0.005" solref="0.02 1.0"/>
+      </body>
+      <site rgba="0 0 0 0" size="0.005" pos="0 0 -0.045" name="bottom_site"/>
+      <site rgba="0 0 0 0" size="0.005" pos="0 0 0.03" name="top_site"/>
+      <site rgba="0 0 0 0" size="0.005" pos="0.03 0.03 0" name="horizontal_radius_site"/>
+    </body>
+  </worldbody>
+</mujoco>

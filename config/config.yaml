@@ -1,0 +1,33 @@
+defaults:
+  - environment: sim_robot                                              # sim_robot or cart_pole
+  - tasks: polishing_3D                                                 # depending on environment
+  - rl: ensemble_sac                                                    # either sac or ensemble_sac
+  - nominal: nominal_poly_rail_suboptimal                                          # [nominal_via_points, nominal_cart_pole, nominal_poly_${version}]
+  - hybrid: mixed_cheq                                                  # either mixed (constant) or mixed_cheq for adaptive
+  - training: training
+  - _self_
+
+device: "cuda"                                                          # will overwrite every device in the yaml-files
+learning_starts: 15000
+
+root_dir: "./exp"
+entity: polishing-robot
+project: ws_lukas
+group: results
+job_type: results_cheq
+
+model_load_path: ${root_dir}/${entity}/${project}/${group}
+stage: train                                                            # [train, load]
+num_eval_episodes: 1
+dir: ${root_dir}/${entity}/${project}/${group}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+wandb:
+  entity: ${entity}
+  project: ${project} 
+  group: ${group}
+  job_type: ${job_type}
+  debug: false                                                           # either false for normal logger or true for silent loggers
+
+hydra:
+  run:
+    dir: ${dir}

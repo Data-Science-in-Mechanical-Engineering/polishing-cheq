@@ -1,0 +1,50 @@
+<mujoco model="Arena">
+  <include file="panda.xml"/>
+  <include file="table.xml"/>
+  <include file="polishing_sites.xml"/>
+  <include file="task_objects/bridge.xml"/>
+
+  <option integrator="implicitfast" cone="elliptic" solver="Newton" tolerance="1e-10" impratio="1.0">
+    <flag multiccd="enable"/>
+  </option>
+
+  <statistic center="0.3 0 0.4" extent=".8"/>
+
+  <visual>
+    <headlight diffuse=".4 .4 .4" ambient=".5 .5 .5"/>
+    <global offwidth="1080" offheight="720"/>
+    <quality offsamples="8"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1=".3 .5 .7" rgb2="0 0 0" width="32" height="512"/>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <!-- <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1="0 0 0" rgb2="0 0 0"/>-->
+    <material name="grid" texture="grid" texrepeat="2 2" texuniform="true" reflectance="0"/>
+  </asset>
+
+  <worldbody>
+    <!--camera name="cam" pos="4 0 0.7"  quat="0.596368 0.379928 0.379928 0.596368" mode="track"/-->
+    <light pos="0.5 0 3" dir="-0.1 0 -1" diffuse="1 1 1" specular=".3 .3 .3"/>
+
+    <geom name="floor" size="3 3 0.01" type="plane" material="grid"/>
+
+    <!--light pos="0 -.5 .4" mode="targetbodycom" target="block" diffuse=".8 .8 .8" specular=".3 .3 .3"/-->
+    <!--body name="block" pos="0.5 0 1">
+      <freejoint name="block"/>
+      <geom name="block" type="box" size=".02 .02 .02" mass="0.1" rgba=".6 .3 .6 1"/>
+    </body-->
+
+    <body name="target" pos=".15 0 .5" quat="0 1 0 0" mocap="true">
+      <geom name="target" type="box" size=".005 .005 .005" contype="0" conaffinity="0" rgba=".6 .3 .3 0.3"/>
+    </body>
+
+  </worldbody>
+  
+  <sensor>
+    <!--framepos name="block_pos" objtype="geom" objname="block"/-->
+    <!--framequat name="block_quat" objtype="geom" objname="block"/-->
+  </sensor>
+
+
+</mujoco>

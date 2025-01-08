@@ -1,0 +1,16 @@
+<mujoco model="table">
+    <worldbody>
+        <!-- Table body -->
+        <body name="table" pos="-0.001 0 0">
+          <geom pos="-0.25 0 0.4" size="0.325 1 0.4" type="box" group="0" name="table_collision" friction="1 0.005 0.0001"/>
+          <geom pos="-0.25 0 0.4" size="0.325 1 0.4" type="box" conaffinity="0" contype="0" group="1" name="table_visual"/>
+          <site pos="-0.25 0 0.4" name="table_top" size="0.001 0.001 0.001" rgba="0 0 0 0"/>
+        </body>
+        <!-- Second Table -->
+        <body name="table1" pos="-0.1 0 .48">
+          <geom pos="0.6 0 .5" size=".4 .4 0.01" type="box" group="2" name="table_collision1" friction="1 0.005 0.0001"/>
+          <geom pos="0.6 0.2 .5" size=".4 .4 0.01" type="box" conaffinity="0" contype="0" group="3" name="table_visual1"/>
+          <site pos="0.6 0.2 .5" name="table_top1" size="0.001 0.001 0.001" rgba="0 0 0 0"/>
+        </body>
+    </worldbody>
+</mujoco>

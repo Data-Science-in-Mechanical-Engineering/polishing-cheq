@@ -1,0 +1,47 @@
+_target_: agents.nominal.nominal_poly_basic.NominalPolyBasic
+# ----- via point definition ----- #
+via_points:
+  point_0:
+    pos: [0.5, 0.4, 1.05]
+    vel: [0, 0, 0]
+    ori: [-180, 0, 180]                                                  # in euler angles [deg]
+  point_1:
+    pos: [0.5, 0.17, 1.0327]
+    vel: [0, -0.044, 0.041]                                                            #[0, -0.153, 0.128]
+    ori: [-180, 0, 137]    
+  point_2:
+    pos: [0.5, 0.12, 1.0657]
+    vel: [0, -0.054, 0.025]
+    ori: [-180, 0, 155]                                                     
+  point_3:
+    pos: [0.5, 0.06, 1.0843]
+    vel: [0, -0.059, 0.010]
+    ori: [-180, 0, 170]   
+  point_4:
+    pos: [0.5, 0, 1.08982]
+    vel: [0, -0.07, 0]
+    ori: [-180, 0, 180]   
+  point_5:
+    pos: [0.5, -0.06, 1.0843]
+    vel: [0, -0.059, -0.010]
+    ori: [-180, 0, 190]                                   
+  point_6:
+    pos: [0.5, -0.12, 1.0657]
+    vel: [0, -0.054, -0.025]
+    ori: [-180, 0, 205]
+  point_7:
+    pos: [0.5, -0.17, 1.0327]
+    vel: [0, -0.044, -0.041]                                                     #[0, -0.153, -0.128] so that eef does not go into object
+    ori: [-180, 0, 228]
+  point_8:
+    pos: [0.5, -0.4, 1.05]
+    vel: [0, 0, 0]
+    ori: [-180, 0, 180]
+
+# ----- for trajectory creation (equal spacing) ----- #
+num_points: 600
+
+# ----- some action definitions and hyperparameters ----- #
+nominal_gains: [400, 111, 70, 150, 200, 78, 0.3]         # first 6 for stiffness and last one for damping factor
+indent: 0.004339
+device: ${device}

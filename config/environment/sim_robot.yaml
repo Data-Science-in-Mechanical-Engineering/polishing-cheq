@@ -1,0 +1,28 @@
+name: "sim_robot"                                         # Name of the environment
+horizon: 380                                             # Maximum number of steps per episode   
+mixed_action_env: true                                    # Flag for contextualized agent (True will store lambda in RB)
+
+arena: "arena"                                            # specify name of xml-file for arena [arena, arena_flat, arena_spiky, ...]
+
+reset_poses:                                              # Reset poses for the robot in joint angles [rad]
+  init_pose:
+    panda_joint1: 0.38674052
+    panda_joint2: 0.31145374
+    panda_joint3: 0.11262199
+    panda_joint4: -2.04894993
+    panda_joint5: -0.74368906
+    panda_joint6: 1.81449499
+    panda_joint7: 0.89521204
+
+# RENDERING ----------------------------------------
+cam_config:
+  lookat: [0, 0, 1]
+  azimuth: 155
+  elevation: -25
+  distance: 2
+
+image_size_width: 600
+image_size_height: 400
+
+render_mode: "rgb_array"
+# ---------------------------------------- RENDERING

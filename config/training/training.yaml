@@ -1,0 +1,26 @@
+max_steps: 2500000                                     # Maximum number of steps to train the agent          
+
+async_actor:
+  buffer_length: 550                                   # Length of the buffer to store the transitions. MUST BE LARGER THAN THE ENVIRONMENT HORIZON TO NOT LOSE TRANSITIONS!
+  learner_ip: "localhost"                              # IP address of the learner
+  control_freq: 50                                     # Control frequency [Hz]
+  max_steps: ${training.max_steps}                     # Maximum number of steps to interact with the environment
+  learning_starts: ${learning_starts}                  # Number of steps after which start learning
+  evaluation_frequency: [10000, "steps"]               # Frequency at which actor is evaluated. Specified in either ["steps", "episodes"]
+  evaluation_episodes: 1                               # Number of episodes to evaluate the actor
+  #---------Simulation specific parameters
+  record_simulation: [True, 1]                         # Record the simulated robot. Specify how often a video should be rendered (in terms of evaluation frequency)
+
+async_learner:
+  learning_starts: ${learning_starts}                  # Number of steps after which start learning
+  batch_size: [1,256]                                  # Batch size for training // this has to be set to a list of [UTD-Ratio, Samples] when using BernoulliSamples
+  buffer_size: 1000000                                 # Size of the replay buffer
+  device: ${device}                                    # Device to run the training on
+  ensemble_size: 5                                     # The size of the ensemble currently in use (either [ , int])
+  kappa: 0.8                                           # The kappa for the bernoulli sampling (either [ , float(0,1)])
+  max_steps: ${training.max_steps}                     # Maximum number of steps to train the agent
+  steps_per_update: 200                                # Number of steps after which update the actor network
+  log_frequency: 20                                    # Number of steps after which log the training statistics
+  checkpoint_frequency: 100000                         # Number of steps after which the model is checkpointed                     # Number of steps after which the model is checkpointed
+  overwrite: true                                      # Whether to overwrite the previous checkpoint or creating new ones everytime
+  checkpoint_path: ${dir}                              # Path where the checkpoints are stored

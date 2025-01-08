@@ -1,0 +1,32 @@
+<!-- Note: site positions here can be ignored as they are initialized in the environment with the positions stated in the config -->
+<mujoco model="polishing_sites">
+    <worldbody>
+        <body name="site_1" pos="0.5 0 1">
+          <geom name="site_1" type="ellipsoid" size=".01 .01 .002" mass="0.1" rgba="0 0 0 .5" contype="0" conaffinity="0"/>
+        </body>
+        <body name="site_2" pos="0.5 0 1">
+          <geom name="site_2" type="ellipsoid" size=".01 .01 .002" mass="0.1" rgba="0 0 0 .5" contype="0" conaffinity="0"/>
+        </body>
+        <body name="site_3" pos="0.5 0 1">
+          <geom name="site_3" type="ellipsoid" size=".01 .01 .002" mass="0.1" rgba="0 0 0 .5" contype="0" conaffinity="0"/>
+        </body>
+        <body name="site_4" pos="0.5 0 1">
+          <geom name="site_4" type="ellipsoid" size=".01 .01 .002" mass="0.1" rgba="0 0 0 .5" contype="0" conaffinity="0"/>
+        </body>
+        <body name="site_5" pos="0.5 0 1">
+          <geom name="site_5" type="ellipsoid" size=".01 .01 .002" mass="0.1" rgba="0 0 0 .5" contype="0" conaffinity="0"/>
+        </body>
+        <body name="site_6" pos="0.5 0 1">
+          <geom name="site_6" type="ellipsoid" size=".01 .01 .002" mass="0.1" rgba="0 0 0 .5" contype="0" conaffinity="0"/>
+        </body>
+        <body name="site_7" pos="0.5 0 1">
+          <geom name="site_7" type="ellipsoid" size=".01 .01 .002" mass="0.1" rgba="0 0 0 .5" contype="0" conaffinity="0"/>
+        </body>
+        <body name="site_8" pos="0.5 0 1">
+          <geom name="site_8" type="ellipsoid" size=".01 .01 .002" mass="0.1" rgba="0 0 0 .5" contype="0" conaffinity="0"/>
+        </body>
+        <body name="site_9" pos="0.5 0 1">
+          <geom name="site_9" type="ellipsoid" size=".01 .01 .002" mass="0.1" rgba="0 0 0 .5" contype="0" conaffinity="0"/>
+        </body>
+    </worldbody>
+</mujoco>
