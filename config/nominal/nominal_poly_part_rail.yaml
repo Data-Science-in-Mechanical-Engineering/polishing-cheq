@@ -49,7 +49,7 @@ nominal_gains: [
 ]
 bounds_change: [0.12, 0.04, -0.04, -0.12]
 
-indent: -0.01208733
-action_radius: 0.0159564
+indent: -0.012
+action_radius: 0.016
 num_skip_points: 10
 device: ${device}

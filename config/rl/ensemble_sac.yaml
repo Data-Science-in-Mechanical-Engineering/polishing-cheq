@@ -12,5 +12,5 @@ autotune: true
 critic_hidden_dims: [256, 256]
 actor_hidden_dims: [256, 256]
 action_noise: "pink"
-layer_norm_q: true                       # layer normalization for q-ensemble
-layer_norm_a: true                       # layer normalization for actor-net
+layer_norm_q: false                       # layer normalization for q-ensemble
+layer_norm_a: false                       # layer normalization for actor-net

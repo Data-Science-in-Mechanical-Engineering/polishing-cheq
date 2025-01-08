@@ -616,9 +616,8 @@ class SimRobotEnv(MujocoGymEnv):
         Returns:
             bool
         """
-        truncated = False
+        truncated = False    
 
-        #TODO: proper truncating, What is meant by that?
         if self._check_joint_limits():
             print(f'Joint limits exceeded. Truncating episode at step {self.environment_step}.')
             truncated = True

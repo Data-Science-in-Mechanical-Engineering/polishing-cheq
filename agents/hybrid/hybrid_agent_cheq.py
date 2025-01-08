@@ -2,8 +2,9 @@ from agents.hybrid.hybrid_base import HybridBase
 from agents.rl.rl_base import RLBase
 from agents.rl.sac_ensemble import SACEnsemble
 from agents.nominal.nominal_base import NominalBase
-from typing import Type
+from typing import Type, Optional
 import numpy as np
+from collections import deque
 import torch
 
 
@@ -12,9 +13,11 @@ class CHEQAgent(HybridBase):
     Contextualized hybrid agent with changing mixing parameter.
 
     Hybrid agent that combines actions of the RL-agent and nominal-agent with a mixing parameter lambda.
-    The merged action results from: a_merged = lambda * a_rl + (1 - lambda) * a_nominal.
+    The merged action results from: a_mix = lambda * a_rl + (1 - lambda) * a_nominal.
     The lambda is dependent on the uncertainty estimate of the RL algorithm. 
     Thus, a value of lambda=1 corresponds to pure RL-action while a value of lambda=0 results in pure nominal action.
+
+    We further add the option of uncertainty smoothing by allowing for an uncertainty-deque size.
 
     Attributes:
         rl_agent: The reinforcement learning agent used by the hybrid agent.
@@ -27,6 +30,7 @@ class CHEQAgent(HybridBase):
             nominal_agent: Type[NominalBase],
             uncertainty_min: float = 0.03,
             uncertainty_max: float = 0.15,
+            uncertainty_deque: int = 1,
             weight_min: float = 0.2,
             weight_warmup_max: float = 0.3,
             weight_max: float = 1.0,
@@ -48,6 +52,8 @@ class CHEQAgent(HybridBase):
 
         # saving for uncertainty computation
         self.uncertainty = None
+        self.uncertainty_raw = None
+        self.uncertainty_deque = deque(maxlen=uncertainty_deque)
         self.current_obs = None
         self.current_rl_action = None
 
@@ -69,7 +75,7 @@ class CHEQAgent(HybridBase):
         Returns the hybrid and rl-action based on the provided observation.
 
         This method gets the rl-action from the rl-agent and the nominal-action from the nominal-agent and computes the mixed hybrid
-        action according to a_merged = lambda * a_rl + (1 - lambda) * a_nominal.
+        action according to a_mix = lambda * a_rl + (1 - lambda) * a_nominal.
 
         Args:
             obs: The current observation.
@@ -116,8 +122,12 @@ class CHEQAgent(HybridBase):
         # receive uncertainty from current rl agent and last state and action
         _, uncertainty = self.rl_agent.get_epistemic_uncertainty(state=self.current_obs, 
                                                                  action=self.current_rl_action)
-        # further save the current uncertainty in instance
-        self.uncertainty = uncertainty.detach().cpu().numpy()[0]
+        
+        self.uncertainty_raw = uncertainty.detach().cpu().numpy()[0]
+
+        # save current uncertainty in deque and compute uncertainty average
+        self.uncertainty_deque.append(uncertainty.detach().cpu().numpy()[0])
+        self.uncertainty = sum(self.uncertainty_deque)/len(self.uncertainty_deque)
 
         if step >= self.warmup_steps:
             # learning_starts already included in step (negative step)
@@ -132,6 +142,7 @@ class CHEQAgent(HybridBase):
         Resets the mixing parameter before every new episode.
         """
         self.weight = self.weight_min
+        self.uncertainty_deque.clear()
 
     def _clipped_linear_function(self) -> float:
         """
@@ -150,11 +161,20 @@ class CHEQAgent(HybridBase):
             new_weight = (self.uncertainty - self.uncertainty_max)/(self.uncertainty_min - self.uncertainty_max) * (self.weight_max - self.weight_min) + self.weight_min
 
         return new_weight
+    
+    ##### property-getter #####
 
     @property
     def get_uncertainty(self):
         """
-        Returns the current uncertainty of the Agent.
+        Returns the smoothed uncertainty of the Agent according to the deque.
         """
         return self.uncertainty
+    
+    @property
+    def get_raw_uncertainty(self):
+        """
+        Returns the current uncertainty of the Agent.
+        """
+        return self.uncertainty_raw
     

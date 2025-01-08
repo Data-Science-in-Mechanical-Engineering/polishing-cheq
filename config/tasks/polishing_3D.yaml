@@ -82,6 +82,6 @@ sites:
 
 # SAFETY PARAMETERS -----------------------------------------------------------
 pos_cap: 0.08                                            # Position cap [m]
-vel_cap: 0.1                                             # Velocity cap [m/s]
+vel_cap: 0.5                                             # Velocity cap [m/s]
 force_cap: 25                                            # Force cap [N]
 # ----------------------------------------------------------- SAFETY PARAMETERS

@@ -1,8 +1,8 @@
 defaults:
-  - environment: sim_robot                                              # sim_robot or cart_pole
-  - tasks: polishing_3D                                                 # depending on environment
+  - environment: sim_robot
+  - tasks: polishing_3D
   - rl: ensemble_sac                                                    # either sac or ensemble_sac
-  - nominal: nominal_poly_rail_suboptimal                                          # [nominal_via_points, nominal_cart_pole, nominal_poly_${version}]
+  - nominal: nominal_poly_rail_suboptimal                               # nominal_poly_${version}
   - hybrid: mixed_cheq                                                  # either mixed (constant) or mixed_cheq for adaptive
   - training: training
   - _self_

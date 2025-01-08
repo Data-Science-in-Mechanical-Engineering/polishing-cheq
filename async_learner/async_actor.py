@@ -172,7 +172,7 @@ class AsyncActor:
 
                 # increment episode count
                 episode_count += 1
-                fails_count += 1 if truncated or (terminated and info.get("fail_reason")=="horizon") else 0
+                fails_count += 1 if truncated else 0
 
                 info.update({"fails_count": fails_count})
 

@@ -12,10 +12,9 @@ from agents.nominal.nominal_base import NominalBase
 class NominalPolyRail(NominalBase):
     """
     This class is used to create a controller for the SimulationRobot.
-    It uses polynomial interpolation to create a trajectory based on via_points.
+    It uses third degree polynomial interpolation to create a positional path based on via_points.
     Further, for the orientation of the end-effector it uses SLERP as an interpolation method for angular motion.
-
-    Thus, after initialization, the full trajectory is achieved.
+    Thus, after initialization, the full path is achieved already.
     
     It further includes a control law for the get_action method that takes the current state
     of the robot as base for the desired point computation.

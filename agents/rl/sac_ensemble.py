@@ -348,7 +348,6 @@ class SACEnsemble(RLBase):
         # load the agent and optimizer states
         agent_states = torch.load(f=load_path)
         self.agent.load_state_dict(agent_states.get("agent_state_dict"))
-        return
         self.actor_optimizer.load_state_dict(agent_states.get("actor_optimizer_state"))
         self.q_optimizer.load_state_dict(agent_states.get("critic_optimizer_state"))
 

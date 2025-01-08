@@ -14,7 +14,6 @@ class NominalPolyPartRail(NominalBase):
     This class is used to create a controller for the SimulationRobot.
     It uses polynomial interpolation to create a trajectory based on via_points.
     Further, for the orientation of the end-effector it uses SLERP as an interpolation method for angular motion.
-
     Thus, after initialization, the full trajectory is achieved.
     
     It further includes a control law for the get_action method that takes the current state
@@ -22,7 +21,7 @@ class NominalPolyPartRail(NominalBase):
     This will come in handy for the MixedAgent.
 
     In addition to the NominalPolyRail, this controller includes a change in impedance gains 
-    which is based on passing a certain position of the trajectory.
+    which is based on passing a certain position of the y-axis.
 
     Args:
         NominalBase (class): The general parent of controls

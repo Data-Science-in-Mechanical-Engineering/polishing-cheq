@@ -192,20 +192,6 @@ class SAC(RLBase):
         step_metrics["agent_train/qf2_loss"] = qf2_loss.item()
         step_metrics["agent_train/q_loss"] = qf_loss.item()
 
-        # logging insights about the algorithms loss values
-        """comparison = torch.cat([qf1_a_values.unsqueeze(1), qf2_a_values.unsqueeze(1), next_q_value.unsqueeze(1), min_qf_next_target.view(-1).unsqueeze(1)], dim=1)
-        if qf_loss.item() > 2000:  # otherwise output would be cluttered with good cases
-            for index in range(comparison.shape[0]):
-                if abs(comparison[index, 0] - comparison[index, 2]) > 500:
-                    print(f"state: ", batch.observations[index,:])
-                    print(f"reward: ", batch.rewards[index,:])
-                    print(f"action: ", batch.actions[index,:])
-                    print(f"next_state: ", batch.next_observations[index,:])
-                    print(f"dones: ", batch.dones[index,:])
-                    print(f"qf1_values vs. qf2_values vs. next_q_value vs. min_qf_next_target: ", comparison[index,:])
-                    print(f"qf_loss: ", qf_loss)
-                    print("____")"""
-
         # update of phi (policy net)
         if self.num_gradient_steps % self.policy_frequency == 0:  # TD3 Delayed update support
             for _ in range(self.policy_frequency):  # compensate for the delay by doing 'actor_update_interval' instead of 1

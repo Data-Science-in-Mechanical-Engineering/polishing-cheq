@@ -11,4 +11,5 @@ autotune: true
 critic_hidden_dims: [256, 256]
 actor_hidden_dims: [256, 256]
 action_noise: "pink"
-layer_norm: false
+layer_norm_q: false
+layer_norm_a: false
