@@ -6,6 +6,7 @@ They incorporate utility functions:
 - store data in buffers
 - launch environments
 - launch the wandb logging
-- nn helper functions
-- plotting utilities
+- NN helper functions
+- plotting utilities for evaluations
 - convenient timing functions
+- utilities for different reward functions
